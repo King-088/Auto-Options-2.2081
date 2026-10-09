@@ -82,16 +82,7 @@ class $modify(MyEditorLayer, LevelEditorLayer) {
         LevelEditorLayer::onPlaytest();
     }
 
-    void onResumePlaytest() {
-        if (g_toggleBtn) g_toggleBtn->setVisible(false);
-        LevelEditorLayer::onResumePlaytest();
-    }
-
-    void onPausePlaytest() {
-        if (g_toggleBtn) g_toggleBtn->setVisible(true);
-        LevelEditorLayer::onPausePlaytest();
-    }
-
+   
     void onStopPlaytest() {
         if (g_toggleBtn) g_toggleBtn->setVisible(true);
         LevelEditorLayer::onStopPlaytest();
