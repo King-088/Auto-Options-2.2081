@@ -1,8 +1,10 @@
-name: Build Mod
+name: Build Geode Mod
 
 on:
-  push:
   workflow_dispatch:
+  push:
+    branches:
+      - "**"
 
 jobs:
   build:
@@ -10,10 +12,10 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - name: macOS
-            os: macos-latest
           - name: Windows
             os: windows-latest
+          - name: macOS
+            os: macos-latest
           - name: Android64
             os: ubuntu-latest
             target: Android64
@@ -29,11 +31,13 @@ jobs:
         with:
           combine: true
           target: ${{ matrix.config.target }}
+          sdk: latest
 
   package:
-    name: Package
+    name: Package builds
     runs-on: ubuntu-latest
-    needs: build
+    needs: ['build']
+
     steps:
       - uses: geode-sdk/build-geode-mod/combine@main
         id: build
